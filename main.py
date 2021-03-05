@@ -1,12 +1,13 @@
 # -*- coding: euc-kr -*-
 '''
 Created on 2021. 2. 26.
+Author: jm.shin@pointi.com
 '''
 import os
 import time
 
-from details import convert_stat_details
-from summary import summary_add_local
+from src.details import convert_stat_details
+from src.summary import summary_add_local
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
