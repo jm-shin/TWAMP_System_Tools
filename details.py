@@ -9,7 +9,8 @@ import time
 
 def convert_stat_details(src_path):
     # csv 파일을 경로에서 읽어오고 DataFrame(df)에 넣어줍니다. encoding 설정을 해줘야 한글이 안깨짐.
-    time.sleep(2)
+    time.sleep(2)  # 생성된 파일을 바로 못읽는 문제 때문에 time.sleep
+    print('[details.txt File convert start!]')
     df = pd.read_csv(src_path, encoding='utf-8-sig', low_memory=False)
 
     # df에서 특정 컬럼을 선택합니다.
@@ -24,7 +25,7 @@ def convert_stat_details(src_path):
                     'hgw_reorder_up_rate', 'hgw_reorder_down_count', 'hgw_reorder_down_rate',
                     'hgw_duplication_up_count',
                     'hgw_duplication_up_rate', 'hgw_duplication_down_count', 'hgw_duplication_down_rate', 'hgw_rtt_avg',
-                    'hgw_rtt_min', 'hgw_rtt_max', 'hgw_rtt_stdev', 'targ_tp_cd']]
+                    'hgw_rtt_min', 'hgw_rtt_max', 'hgw_rtt_stdev', 'targ_tp_cd']].copy()
 
     # 가져온 df_selecte를 조건 필터링 (targ_tp_cd = MAIN)
     main_data = df_select[df_select['targ_tp_cd'] == 'MAIN']
@@ -94,6 +95,9 @@ def convert_stat_details(src_path):
     # 최종데이터를 csv 파일로 내보내기
     result_dir = src_path.replace('.txt', '.csv')
     final_data.to_csv(result_dir, float_format='%.3f', encoding='utf-8-sig')
+    time.sleep(5)
+    print('============== details File convert finish! next create summary.txt !!!  ==============')
+
 
 if __name__ == '__main__':
     path = ''
